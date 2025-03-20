@@ -1,0 +1,367 @@
+% --------------------------------------------------
+% DOCUMENT CLASS
+% --------------------------------------------------
+
+\documentclass[../thesis.tex]{subfiles}
+
+\begin{document}
+
+% \newpage
+
+% --------------------------------------------------
+% PARAMETER CALIBRATION
+% --------------------------------------------------
+
+\subsection{Calibration}
+
+\begin{comment}
+	
+Parameters are calibrated in order to reproduce Brazilian characteristics and for that, data from literature and data sets will be used, as described next. First, the regions must be determined: region $1$ will be set as the State of São Paulo, which is responsible for $30\%$ of the national GDP, as reported by \textcite{ibge_GDP_2023}. Other states, political regions or even groups of cities could be chosen, the only limited is that the smallest region in the model cannot be smaller than $0.03$ of the grand total, to guarantee stability of the model, as pointed by \textcite{konopkova_pitfalls_2019}.
+
+The capital elasticity of production $\alpha$ used in the literature is $0.30$, and this value is used for region $2$. Region $1$ must be considered as a more capital intensive region, and for this reason the capital participation in production is higher, at least $30\%$, resulting in $\alpha_{1} = 0.36$. The intertemporal discount factor $\beta$; 
+interest-rate smoothing parameter $\gamma_{R}$; 
+interest-rate sensitivity in relation to inflation $\gamma_{\pi}$; 
+interest-rate sensitivity in relation to product $\gamma_{Y}$; 
+capital depreciation rate $\delta$; 
+price stickness parameter $\theta$;
+autoregressive parameter of productivity in region $1$ $\rho_{A1}$;
+autoregressive parameter of productivity in region $2$ $\rho_{A2}$;
+autoregressive parameter of monetary policy $\rho_{M}$;
+relative risk aversion coefficient $\sigma$;
+relative labor weight in utility $\phi$;
+marginal disutility of labor supply $\varphi$;
+elasticity of substitution between intermediate goods $\psi$;
+standard deviation of productivity shock $\sigma_{A\eta}$;
+standard deviation of monetary shock $\sigma_{M}$
+ are given by the literature, as in \textcite{costa_junior_understanding_2016}.
+
+The weight of region 1 in total production $\theta_{Y}$ is determined by the ratio of São Paulo's GDP and Brazilian's GPD, given by Table \eqref{table:gdp}. The productivity ratio between regions $\theta_{Z}$ represents how much region $2$ is less productive than region $1$. For that, we consider the GDP per hours worked as a mesure of productivity \cite{krugman_defining_1997}.
+
+The weight of good $1$ in consumption composition of region $1$ $\omega_{11}$ and the weight of good $1$ in consumption composition of region $2$ $\omega_{21}$ are given by... @@@
+
+\end{comment}
+
+In this section, the calibration process to replicate Brazilian economic characteristics is presented, utilizing both literature and datasets. First, a region must be selected: in this study, region $1$ corresponds to the State of São Paulo, which contributes $30\%$ to the national GDP, as reported by \textcite{ibge_GDP_2023}. While other regions or groupings are viable options, such as groups of States or Cities, the limitation is that the smallest region cannot be less than $0.03$ of the total, ensuring model stability, as emphasized by \textcite{konopkova_pitfalls_2019}. Second, a year must be chosen: to avoid the pandemic shock that occurred in 2020, the year 2019 will be set as the baseline for establishing the parameters. \textcolor{blue}{}
+
+\textcolor{blue}{}To designate Region $1$ as more capital-intensive, the capital elasticity of production for Region $1$ must be such that $\alpha_{1} > \alpha_{2}$, while Region $2$ is assigned the commonly accepted value of $0.30$. Various parameters, such as the 
+intertemporal discount factor $\beta$; 
+interest-rate smoothing parameter $\gamma_{R}$; 
+interest-rate sensitivity in relation to inflation $\gamma_{\pi}$; 
+interest-rate sensitivity in relation to product $\gamma_{Y}$; 
+capital depreciation rate $\delta$; 
+price stickness parameter $\theta$;
+autoregressive parameter of productivity in region $1$ $\rho_{A1}$;
+autoregressive parameter of productivity in region $2$ $\rho_{A2}$;
+autoregressive parameter of monetary policy $\rho_{M}$;
+relative risk aversion coefficient $\sigma$;
+relative labor weight in utility $\phi$;
+marginal disutility of labor supply $\varphi$;
+elasticity of substitution between intermediate goods $\psi$;
+standard deviation of productivity shock $\sigma_{A\eta}$;
+standard deviation of monetary shock $\sigma_{M}$
+, are drawn from existing literature, as documented in \textcite{costa_junior_understanding_2016} and \textcite{pereira_rbc_2021}.
+
+The weight of region $1$ in total production, $\theta_{Y}$, is determined by the São Paulo GDP to Brazil GDP ratio, as presented in Table \eqref{table:gdp}.
+
+\textcolor{blue}{}The productivity ratio $\theta_{Z}$ quantifies the relative productivity of Region 2 compared to Region 1, using GDP per total hours worked as a measure, as discussed by \textcite{krugman_defining_1997}. Table \eqref{table:gdp} presents the regional GDP and total worked hours. The total worked hours are given by the product of the number of the employed population and the average worked hour. Productivity is determined by the regional GDP to the total worked hours ratio. Therefore, the productivity $Z_{\eta}$ of each region and the productivity ratio $\theta_{Z}$ are:
+\begin{align}
+	Z_{\eta}  &\coloneqq \frac{Y_{\eta}}{n_{\eta} L_{\eta}} \\
+	\theta_{Z} &\coloneqq \frac{Z_{2}}{Z_{1}} \approx \frac{469}{662} \approx 0.7076
+\end{align}
+
+\textcolor{blue}{}The weight of good 1 in the consumption composition $\omega_{\eta 1}$ for both regions is sourced from \textcite[Table 3, p.442]{haddad_matriz_2017}. Specifically, $\omega_{11}$ corresponds to item $a_{SP\times SP}$ \label{eq:omega-e1}. Additionally, $\omega_{21}$ is calculated as the weighted mean of all state production (except São Paulo) with São Paulo as the final demand (column SP), taking into account the total production $Y_{i}$ of each state:
+\begin{align}
+	\omega_{21} = \frac{\sum_{i=1}^{26} \omega_{iSP} Y_i}{\sum_{i=1}^{26} Y_i} \approx 0.095 \label{eq:omega-e2}
+\end{align}
+
+The parameters are summarized in Table \eqref{table:parameter-calibration} and the steady state variables are presented in Table \eqref{table:ss-values}.
+
+%%%%%
+
+\newpage
+
+% --------------------------------------------------
+% Workforce and Average Working Hours 
+% --------------------------------------------------
+
+% \subsubsection{Brazilian GDP, Worked Hours and Productivity in 2019}
+
+% \vspace*{0.5cm}
+
+{\small
+
+{\singlespacing
+	
+\begin{center}
+	\begin{longtblr}[
+		label = {table:gdp},
+		caption = {Brazilian GDP, Worked Hours and Productivity in 2019},
+		remark{Source} = {\textcite{ibge_workers_2023}, \textcite{ibge_GDP_2023}, \textcite{ibge_hours_2023}}]
+		{rowhead = 1,
+		 hline{1,2,Z} = {2pt},
+		 % hline{3-Y} = {1pt},
+		 colspec={
+		 	Q[si={table-format=3.2,table-number-alignment=center},l,white]|
+		 	Q[si={table-format=3.2,table-number-alignment=center},r,white]|
+		 	Q[si={table-format=3.2,table-number-alignment=center},r,white]|
+		 	Q[si={table-format=3.2,table-number-alignment=center},r,white]|
+		 	Q[si={table-format=3.2,table-number-alignment=center},r,white]}
+	 	}
+		{State} & 
+		{GDP \\ (R\$)} & 
+		{GDP \\ (\%)} & 
+		{Total Worked \\ Hours (h)} & 
+		{Productivity \\ (R\$/hour)} \\ 
+		São Paulo & 2.348.338.000 & 31,8 & 3.545.301 & 662 \\ 
+		Rio de Janeiro & 779.927.917 & 10,6 & 1.211.037 & 644 \\ 
+		Minas Gerais & 651.872.684 & 8,8 & 1.514.471 & 430 \\ 
+		Rio Grande do Sul & 482.464.177 & 6,5 & 893.768 & 540 \\ 
+		Paraná & 466.377.036 & 6,3 & 867.265 & 538 \\ 
+		Santa Catarina & 323.263.857 & 4,4 & 592.856 & 545 \\ 
+		Bahia & 293.240.504 & 4,0 & 832.538 & 352 \\ 
+		Distrito Federal & 273.613.711 & 3,7 & 222.054 & 1.232 \\ 
+		Goiás & 208.672.492 & 2,8 & 531.835 & 392 \\ 
+		Pernambuco & 197.853.378 & 2,7 & 538.199 & 368 \\ 
+		Pará & 178.376.984 & 2,4 & 497.051 & 359 \\ 
+		Ceará & 163.575.327 & 2,2 & 542.370 & 302 \\ 
+		Mato Grosso & 142.122.028 & 1,9 & 265.546 & 535 \\ 
+		Espírito Santo & 137.345.595 & 1,9 & 299.144 & 459 \\ 
+		Amazonas & 108.181.091 & 1,5 & 232.169 & 466 \\ 
+		Mato Grosso do Sul & 106.943.246 & 1,4 & 197.764 & 541 \\ 
+		Maranhão & 97.339.938 & 1,3 & 317.848 & 306 \\ 
+		Rio Grande do Norte & 71.336.780 & 1,0 & 191.595 & 372 \\ 
+		Paraíba & 67.986.074 & 0,9 & 219.648 & 310 \\ 
+		Alagoas & 58.963.729 & 0,8 & 153.311 & 385 \\ 
+		Piauí & 52.780.785 & 0,7 & 167.634 & 315 \\ 
+		Rondônia & 47.091.336 & 0,6 & 121.275 & 388 \\ 
+		Sergipe & 44.689.483 & 0,6 & 131.390 & 340 \\ 
+		Tocantins & 39.355.941 & 0,5 & 96.137 & 409 \\ 
+		Amapá & 17.496.661 & 0,2 & 46.468 & 377 \\ 
+		Acre & 15.630.017 & 0,2 & 44.427 & 352 \\ 
+		Roraima & 14.292.227 & 0,2 & 32.173 & 444 \\ 
+		Brazil & 7.389.131.000 & 100,0 & 14.300.643 & 517 \\ 
+		Rest of Brazil & 5.040.793.000 & 68,2 & 10.755.342 & 469 \\
+		\end{longtblr}	
+	\end{center}
+
+} % end of \singlespacing
+
+} % end of \small
+
+%%%%%
+
+\newpage
+
+% --------------------------------------------------
+% PARAMETERS
+% --------------------------------------------------
+
+% \subsubsection{Parameter Calibration}\label{sec:calibration}
+
+\vspace*{0.5cm}
+
+{\small
+	
+{\singlespacing
+
+\begin{center}
+\begin{longtblr}[
+	label = {table:parameter-calibration},
+	caption = {Parameter Calibration},
+	remark{Sources} = {The Author and \textcite{costa_junior_understanding_2016}}]
+	{rowhead = 1,
+	 hline{1,2,Z} = {2pt},
+	 % hline{3-Y} = {1pt},
+	 colspec={
+	 	Q[si={table-format=3.2,table-number-alignment=center},c,white]|
+	 	Q[si={table-format=3.2,table-number-alignment=center},l,white]|
+	 	Q[si={table-format=3.2,table-number-alignment=right},c,white]}
+ 	}
+	\textbf{Parameter} & \textbf{Definition} & \textbf{Calibration} \\ 
+	%$\alpha$         & capital elasticity of production & $0.35$ \\ 
+	$\alpha_1$       & capital elasticity of production in region 1 & $0.4$ \\ 
+	$\alpha_2$       & capital elasticity of production in region 2 & $0.3$ \\ 
+	$\beta$          & intertemporal discount factor & $0.985$ \\ 
+	$\gamma_{R}$     & interest-rate smoothing parameter & $0.79$ \\ 
+	$\gamma_{\pi}$   & interest-rate sensitivity in relation to inflation & $2.43$ \\ 
+	$\gamma_{Y}$     & interest-rate sensitivity in relation to product & $0.16$ \\ 
+	$\delta$         & capital depreciation rate & $0.025$ \\ 
+	$\theta$         & price stickness parameter & $0.8$ \\ 
+	$\theta_{C1}$    & weight of consumption on production of region 1 & $0.65$ \\ 
+	$\theta_{C2}$    & weight of consumption on production of region 2 & $0.65$ \\ 
+	%$\theta_{C11}$   & weight of good 1 in demand of region 1 & $0.4$ \\ 
+	%$\theta_{C12}$   & weight of good 2 in demand of region 1 & $0.4$ \\ 
+	%$\theta_{C21}$   & weight of good 1 in demand of region 2 & $0.4$ \\ 
+	%$\theta_{C22}$   & weight of good 2 in demand of region 2 & $0.4$ \\ 
+	%$\theta_{PY1}$   & weight of region 1 in gross domestic product & $0.3$ \\ 
+	$\theta_{Y}$     & weight of region 1 in total production & $0.318$ \\ 
+	%$\theta_{\pi}$   & weight of region 1 inflation in total inflation & $0.5$ \\ 
+	$\theta_{P}$     & region 2 to 1 price level ratio & $1$ \\ 
+	$\theta_{Z}$     & productivity proportion between regions & $0.7076$ \\ 
+	$\rho_{A1}$      & autoregressive parameter of productivity in region 1 & $0.95$ \\ 
+	$\rho_{A2}$      & autoregressive parameter of productivity in region 2 & $0.95$ \\ 
+	$\rho_{M}$       & autoregressive parameter of monetary policy & $0.9$ \\ 
+	$\sigma$         & relative risk aversion coefficient & $2$ \\ 
+	$\phi$           & relative labor weight in utility & $1$ \\ 
+	$\varphi$        & marginal disutility of labor supply & $1.5$ \\ 
+	$\psi$           & elasticity of substitution between intermediate goods & $8$ \\ 
+	$\sigma_{A\eta}$ & standard deviation of productivity shock & $0.01$ \\ 
+	$\sigma_{M}$     & standard deviation of monetary shock & $0.01$ \\ 
+	$\omega_{11}$    & weight of good 1 in consumption composition of region 1 & $0.528$ \\ 
+	$\omega_{21}$    & weight of good 1 in consumption composition of region 2 & $0.095$ \\ 
+\end{longtblr}	
+\end{center}
+
+} % end of \singlespacing
+
+} % end of \small
+
+\newpage
+
+% --------------------------------------------------
+% VARIABLES AT THE STEADY STATE
+% --------------------------------------------------
+
+% \subsubsection{Variables at Steady State}
+
+\vspace*{0.5cm}
+
+{\small
+	
+{\singlespacing
+
+\begin{center}
+\begin{longtblr}[
+	label = {table:ss-values},
+	caption = {Variables at Steady State},
+	remark{Source} = {The Author.}]
+	{rowhead = 1,
+	 hline{1,2,Z} = {2pt},
+	 % hline{3-Y} = {1pt},
+	 colspec={
+	 	Q[si={table-format=3.2,table-number-alignment=center},c,white]|
+	 	Q[si={table-format=3.2,table-number-alignment=right},c,white]}
+ 	}
+		\textbf{Variable} & \textbf{Steady State Value} \\
+		$\langle \begin{matrix} P_{1} & Z_{A1} \end{matrix} \rangle$ & $\vec{\bm{1}}$ \\ 
+		$\langle \begin{matrix} P_{2} & Z_{A2} \end{matrix} \rangle$ & $\langle \begin{matrix} 1 & .7076 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} Z_{M} & \pi & \pi_{1} & \pi_{2} \end{matrix} \rangle$ & $\vec{\bm{1}}$ \\ 
+		%$\langle \begin{matrix} \varepsilon_{A1} & \varepsilon_{A2} & \varepsilon_{M} \end{matrix} \rangle$ & $\vec{\bm{0}}$ \\ 
+		$R_{}$    & $.0402$ \\ 
+		$\langle \begin{matrix} \Lambda_{1} & \Lambda_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} .875 & .875 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} W_{1} & W_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} 2.2208 & .8349 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} a_{1} & a_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} 4.3957 & 1.3703 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} b_{1} & b_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} .2175 & .1631 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} Y_{1} & Y_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} 2.6811 & 1.3255 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} I_{1} & I_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} .5832 & .2162 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} K_{1} & K_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} 23.3263 & 8.6491 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} C_{1} & C_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} 2.0979 & 1.1093 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} Q_{1} & Q_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} 1,9969 & 1,3688 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} C_{11} & C_{12} \end{matrix} \rangle$ & $\langle \begin{matrix} 2.2119 & 1.9773 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} C_{21} & C_{22} \end{matrix} \rangle$ & $\langle \begin{matrix} .1442 & 1.3741 \end{matrix} \rangle$ \\ 
+		$\langle \begin{matrix} L_{1} & L_{2} \end{matrix} \rangle$ & $\langle \begin{matrix} .6338 & .9724 \end{matrix} \rangle$ \\
+	\end{longtblr}
+	
+\end{center}
+
+} % end of \singlespacing
+
+} % end of \small
+
+% \newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% --------------------------------------------------
+%% PARAMETER CALIBRATION
+%% --------------------------------------------------
+%
+%\subsubsection{Parameter Calibration}
+%
+%\vspace*{-1cm}
+%
+%\begin{center}
+%	
+%	\begin{align}
+	%		\begin{bmatrix}
+		%			\phi       \\
+		%			\varphi    \\
+		%			\sigma     \\
+		%			\beta      \\
+		%			\delta     \\
+		%			\psi       \\
+		%			\theta     \\
+		%			\alpha     \\
+		%			\gamma_{R}   \\
+		%			\gamma_{\pi} \\
+		%			\gamma_{Y}   \\
+		%			\rho_A     \\
+		%			\rho_M     \\
+		%			\theta_C   \\
+		%			\theta_I
+		%		\end{bmatrix} = 
+	%		\begin{bmatrix}
+		%			\phi       \\
+		%			\varphi    \\
+		%			\sigma     \\
+		%			\beta      \\
+		%			\delta     \\
+		%			\psi       \\
+		%			\theta     \\
+		%			\alpha     \\
+		%			\gamma_{R}   \\
+		%			\gamma_{\pi} \\
+		%			\gamma_{Y}   \\
+		%			\rho_A     \\
+		%			\rho_M     \\
+		%			\theta_C   \\
+		%			\theta_I   
+		%		\end{bmatrix}
+	%	\end{align}
+%	
+%\end{center}
+%
+%% --------------------------------------------------
+%% VARIABLES AT THE STEADY STATE
+%% --------------------------------------------------
+%
+%\subsubsection{Variables at the Steady State}
+%
+%\vspace*{-1cm}
+%
+%\begin{align}
+%	\begin{bmatrix}
+	%		P \\
+	%		Z_A \\
+	%		P^\ast \\
+	%		\pi \\
+	%		Z_M \\
+	%		R \\
+	%		\Lambda \\
+	%		W \\
+	%		Y \\
+	%		C \\
+	%		I \\
+	%		K \\
+	%		L
+	%	\end{bmatrix} = 
+%	\begin{bmatrix}
+	%		P \\
+	%		Z_A \\
+	%		P^\ast \\
+	%		\pi \\
+	%		Z_M \\
+	%		R \\
+	%		\Lambda \\
+	%		W \\
+	%		Y \\
+	%		C \\
+	%		I \\
+	%		K \\
+	%		L
+	%	\end{bmatrix}
+%\end{align}
+%
+%\newpage	
+
+\end{document}

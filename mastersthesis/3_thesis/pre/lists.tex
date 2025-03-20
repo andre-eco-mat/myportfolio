@@ -1,0 +1,69 @@
+% --------------------------------------------------
+% DOCUMENT CLASS
+% --------------------------------------------------
+
+\documentclass[../thesis.tex]{subfiles}
+
+\begin{document}
+
+\newpage
+
+	% --------------------------------------------------
+	% LIST OF FIGURES
+	% --------------------------------------------------
+	
+	{
+		\setlength{\parskip}{1.5pt}
+		\listoffigures
+		\addtocontents{lof}{\vspace{0.5cm}}
+	}
+	
+	% no page number:
+	\thispagestyle{empty}
+
+\newpage
+
+	% --------------------------------------------------
+	% LIST OF TABLES
+	% --------------------------------------------------
+	
+	{
+		\setlength{\parskip}{1.5pt}
+		\listoftables
+		\addtocontents{lot}{\vspace{0.5cm}}
+	}
+	
+	% no page number:
+	\thispagestyle{empty}
+
+\begin{comment}
+	
+\newpage
+
+% --------------------------------------------------
+% LIST OF ABBREVIATIONS: GLOSSARY
+% --------------------------------------------------
+
+list of abbreviations (glossary)
+
+% no page number:
+\thispagestyle{empty}
+
+\newpage
+
+% --------------------------------------------------
+% LIST OF VARIABLES: ACRONYMS
+% --------------------------------------------------
+
+\section*{List fo Variables}
+
+\input{acronyms}
+
+% no page number:
+\thispagestyle{empty}
+	
+	
+\end{comment}
+
+
+\end{document}
