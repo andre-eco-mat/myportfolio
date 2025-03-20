@@ -1,2 +1,2 @@
-# _library
+# library
 my public library
